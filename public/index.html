@@ -3,9 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
     <title>Dtoolz voting app</title>
 </head>
 <body>
-     <h1>TV Series Vote</h1>
+    <div class="container text-center">
+        <div class="row ">
+            <div class="col-12">
+                <form  method="post" id="vote-form">
+                    <h3 class="my-3">Dtoolz TV Series Voting Web App</h3>
+                    <h6 class="text-capitalize">hi series lovers, pls vote for your favorite tv series. </h6>
+                    <div class="my-3 text-capitalize">
+                        <div class=" my-3 custom-control custom-radio">
+                            <input type="radio" id="customRadio1" name="tv" class="custom-control-input" value="Vikings">
+                            <label class="custom-control-label" for="customRadio1">vikings</label>
+                          </div>
+                          <div class="my-3 custom-control custom-radio">
+                            <input type="radio" id="customRadio2" name="tv" class="custom-control-input" value="PrisonBreak">
+                            <label class="custom-control-label" for="customRadio2">prison break</label>
+                          </div>
+                          <div class="my-3 custom-control custom-radio">
+                            <input type="radio" id="customRadio3" name="tv" class="custom-control-input" value="Got">
+                            <label class="custom-control-label" for="customRadio3">game of thrones</label>
+                          </div>
+                          <div class="my-3 custom-control custom-radio">
+                            <input type="radio" id="customRadio4" name="tv" class="custom-control-input" value="Merlin">
+                            <label class="custom-control-label" for="customRadio4">merlin</label>
+                          </div>
+                          <div class="my-3 custom-control custom-radio">
+                            <input type="radio" id="customRadio5" name="tv" class="custom-control-input" value="Lots">
+                            <label class="custom-control-label" for="customRadio5">legend of the seeker</label>
+                          </div>
+                          <div class="my-3 custom-control custom-radio">
+                            <input type="radio" id="customRadio6" name="tv" class="custom-control-input" value="SomethingElse">
+                            <label class="custom-control-label" for="customRadio6">something else</label>
+                          </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Vote">
+                </form>
+                <div id="chartContainer" style="height: 300px;width: 100%"></div>
+            </div>
+            
+        </div>
+    </div>
+     
+
+
+
+
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pusher/5.0.2/pusher.min.js" 
+    integrity="sha256-vOxviKM/QBcMYxoY51Rbfk1ePvAeH/PNSRLv1egfhts=" 
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" 
+    integrity="sha256-CIc5A981wu9+q+hmFYYySmOvsA3IsoX+apaYlL0j6fg=" 
+    crossorigin="anonymous"></script>
+
+    <script src="main.js"></script>
 </body>
 </html>
