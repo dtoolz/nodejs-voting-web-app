@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
+require('dotenv').config();
 
 const Pusher = require('pusher');
 
 var pusher = new Pusher({
-    appId: '955126',
-    key: '2d7f59f24ca256293ac8',
-    secret: 'da247cb717b260d9d94b',
+    appId: process.env.PUSHER_APPID,
+    key: process.env.PUSHER_API_KEY2,
+    secret: process.env.PUSHER_SECRET,
     cluster: 'eu',
     encrypted: true
   });

@@ -2,6 +2,10 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config();
+
+//database config
+require('./config/dbConnect');
 
 const app = express();
 const voting = require('./routes/voting');

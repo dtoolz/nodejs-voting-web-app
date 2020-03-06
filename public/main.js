@@ -1,5 +1,6 @@
 const form = document.getElementById('vote-form');
 
+
 //event to submit form
 form.addEventListener('submit', (e)=>{
   const choiceVote = document.querySelector('input[name=tv]:checked').value;
