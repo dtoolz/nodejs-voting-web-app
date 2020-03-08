@@ -12,20 +12,21 @@
     <div class="container text-center">
         <div class="row ">
             <div class="col-12">
-                <form  method="post" id="vote-form">
+                <form   id="vote-form">
                     <h3 class="my-3 text-capitalize"><span class="text-success">dtoolz</span> <span class="text-primary"> TV</span> <span class="text-danger">series</span> <span class="text-info">web</span> <span class="text-warning">app</span></h3>
                     <h5 class="text-capitalize my-3 lead font-weight-normal">hi series lovers, please vote for your favorite tv series. </h5>
+                    <p class="text-capitalize my-3 lead ">to see more functionality of this web application, open other tabs on your pc and see how votes increment across all tabs simultaneously. </p>
                     <div class="my-3 text-capitalize">
                         <div class=" my-3 custom-control custom-radio">
                             <input type="radio" id="customRadio1" name="tv" class="custom-control-input" value="Vikings">
                             <label class="custom-control-label" for="customRadio1">vikings</label>
                           </div>
                           <div class="my-3 custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="tv" class="custom-control-input" value="Prison Break">
-                            <label class="custom-control-label" for="customRadio2">prison break</label>
+                            <input type="radio" id="customRadio2" name="tv" class="custom-control-input" value="Flash">
+                            <label class="custom-control-label" for="customRadio2">flash</label>
                           </div>
                           <div class="my-3 custom-control custom-radio">
-                            <input type="radio" id="customRadio3" name="tv" class="custom-control-input" value="Game Of Thrones">
+                            <input type="radio" id="customRadio3" name="tv" class="custom-control-input" value="Got">
                             <label class="custom-control-label" for="customRadio3">game of thrones</label>
                           </div>
                           <div class="my-3 custom-control custom-radio">
@@ -33,16 +34,17 @@
                             <label class="custom-control-label" for="customRadio4">merlin</label>
                           </div>
                           <div class="my-3 custom-control custom-radio">
-                            <input type="radio" id="customRadio5" name="tv" class="custom-control-input" value="Legend Of The Seeker">
-                            <label class="custom-control-label" for="customRadio5">legend of the seeker</label>
+                            <input type="radio" id="customRadio5" name="tv" class="custom-control-input" value="Narcos">
+                            <label class="custom-control-label" for="customRadio5">narcos</label>
                           </div>
                           <div class="my-3 custom-control custom-radio">
-                            <input type="radio" id="customRadio6" name="tv" class="custom-control-input" value="Something Else">
-                            <label class="custom-control-label" for="customRadio6">something else</label>
+                            <input type="radio" id="customRadio6" name="tv" class="custom-control-input" value="Other">
+                            <label class="custom-control-label" for="customRadio6">other</label>
                           </div>
                     </div>
                     <input type="submit" class="mb-5 btn btn-primary" value="Vote">
                 </form>
+                <h5 style="text-align: center" id="chartTitle"></h5>
                 <div id="chartSection" style="height: 300px;width: 100%"></div>
             </div>
             

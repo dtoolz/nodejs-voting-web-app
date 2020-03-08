@@ -1,5 +1,5 @@
 const form = document.getElementById('vote-form');
-
+var event;
 
 //event to submit form
 form.addEventListener('submit', (e)=>{
@@ -13,56 +13,82 @@ form.addEventListener('submit', (e)=>{
         'Content-Type' : 'application/json'
      })
    }).then(res => res.json())
-   .then(data => console.log(data))
    .catch(err => console.log(err));
   e.preventDefault();
 });
 
-let dataPoints = [
-   { label :'Vikings', y:0 },
-   { label :'Prison Break', y:0 },
-   { label :'Game Of Thrones', y:0 },
-   { label :'Merlin', y:0 },
-   { label :'Legend Of The Seeker', y:0 },
-   { label :'Something Else', y:0 }
-];
+fetch('http://localhost:3000/vote')
+.then(res => res.json())
+.then(data => {
+    let votes = data.votes;
+    //console.log(votes);
+    let allVotes = votes.length;
+    document.querySelector('#chartTitle').textContent = `Total Vote Results : ${allVotes}`;
+    //to get all vote count
+    let allVoteCounts = {
+       Vikings : 0,  
+       Flash : 0,
+       Got : 0,
+       Merlin : 0,
+       Narcos : 0,
+       Other : 0
+    };
+    
+    
+    allVoteCounts =
+     votes.reduce( (acc, vote) =>
+      ((acc[vote.tv] = (acc[vote.tv] || 0) + parseInt(vote.points)), acc), {});
 
-//for Chart container in index.html
-const chartSection = document.querySelector('#chartSection');
-  if(chartSection){
-      const chart = new CanvasJS.Chart('chartSection', {
-          animationEnabled: true, //to give an initial slide up on the chart
-          theme:'theme2',
-          title: {
-              text:'Vote Results'
-          },
-          data:[
-              {
-                  type:'column',
-                  dataPoints: dataPoints
-              }
-          ]
-      });
-      chart.render();
 
-       // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
+      var dataPoints = [
+        { label :'Vikings', y:allVoteCounts.Vikings },
+        { label :'Flash', y:allVoteCounts.Flash },
+        { label :'Got', y:allVoteCounts.Got },
+        { label :'Merlin', y:allVoteCounts.Merlin },
+        { label :'Narcos', y:allVoteCounts.Narcos },
+        { label :'Other', y:allVoteCounts.Other }
+     ];
+     
+     //for Chart container in index.html
+     const chartSection = document.querySelector('#chartSection');
+       if(chartSection){
+          // Listen for the event.
+          document.addEventListener('votesAdded', function (e) { 
+            document.querySelector('#chartTitle').textContent = `Total Vote Results : ${e.detail.allVotes}`;
+        });
+           const chart = new CanvasJS.Chart('chartSection', { 
+               animationEnabled: true, //to give an initial slide up on the chart
+               theme:'theme2',
+               data:[
+                   {
+                       type:'column',
+                       dataPoints: dataPoints
+                   }
+               ]
+           });
+           chart.render();
+     
+            // Enable pusher logging - don't include this in production
+         Pusher.logToConsole = true;
+     
+         var pusher = new Pusher('2d7f59f24ca256293ac8', {
+           cluster: 'eu',
+           forceTLS: true
+         });
+     
+         var channel = pusher.subscribe('tv-series-app');
+         channel.bind('tv-series-vote', function(data) {
+             dataPoints.forEach( (x) => {
+              if( x.label == data.tv){
+                  x.y += data.points;
+                  allVotes += data.points;
+                  event = new CustomEvent('votesAdded',{detail:{allVotes:allVotes}});
+                  // Dispatch the event.
+                  document.dispatchEvent(event);
+              } 
+           });
+           chart.render();
+         });
+       }
+});
 
-    var pusher = new Pusher('2d7f59f24ca256293ac8', {
-      cluster: 'eu',
-      forceTLS: true
-    });
-
-    var channel = pusher.subscribe('tv-series-app');
-    channel.bind('tv-series-vote', function(data) {
-      dataPoints = dataPoints.map(x => {
-         if( x.label === data.tv){
-             x.y += data.points;
-             return x;
-         } else {
-             return x;
-         }
-      });
-      chart.render();
-    });
-  }
