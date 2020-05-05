@@ -6,7 +6,7 @@ form.addEventListener('submit', (e)=>{
   const choiceVote = document.querySelector('input[name=tv]:checked').value;
   const data = {tv : choiceVote};
   //using fetch to send the post request
-   fetch('http://localhost:3000/vote', {
+   fetch('vote', {
      method : 'post',
      body: JSON.stringify(data),
      headers : new Headers({
@@ -17,7 +17,7 @@ form.addEventListener('submit', (e)=>{
   e.preventDefault();
 });
 
-fetch('http://localhost:3000/vote')
+fetch('vote')
 .then(res => res.json())
 .then(data => {
     let votes = data.votes;
